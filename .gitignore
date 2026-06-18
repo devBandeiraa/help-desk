@@ -1,0 +1,54 @@
+# Dependências
+node_modules/
+.npm
+
+# Build
+dist/
+build/
+.next/
+
+# Ambiente
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Uploads (arquivos enviados pelos usuários)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Banco de dados local
+*.db
+*.sqlite
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Coverage
+coverage/
+.nyc_output/
+
+# TypeScript
+*.tsbuildinfo
+
+# Docker volumes locais
+postgres_data/
+
+# Prisma
+backend/prisma/migrations/dev.db
