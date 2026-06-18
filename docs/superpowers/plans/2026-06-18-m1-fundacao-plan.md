@@ -77,5 +77,25 @@ populando 8 usuários + 30 chamados. Nada de auth/UI ainda.
 - Manter o seed **idempotente** (limpar tabelas antes de inserir) para poder
   rodar de novo sem duplicar.
 
+## Status (2026-06-18)
+
+Tudo do M1 está escrito, validado e versionado, **exceto** rodar a migration e o
+seed — adiado por não haver Postgres/Docker nesta máquina. Já verificado:
+`prisma validate` (schema válido), `prisma generate` e typecheck do seed OK.
+
+**Para concluir o banco depois** (com Docker **ou** uma `DATABASE_URL` de Postgres
+como Neon, ajustada em `backend/.env`):
+
+```bash
+cd backend
+# Se usar Docker:  docker-compose up -d postgres
+npm run db:migrate -- --name init   # cria a migration e aplica
+npm run db:seed                      # popula 8 usuários + 30 chamados
+npm run db:studio                    # (opcional) inspecionar
+```
+
+A migration inicial ainda não foi gerada (ela nasce do primeiro `db:migrate`
+contra um banco real).
+
 ## Próximo marco
 M2 — Auth (JWT + RBAC + telas de login). Terá seu próprio plano.
