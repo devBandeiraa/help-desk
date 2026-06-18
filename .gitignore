@@ -52,3 +52,10 @@ postgres_data/
 
 # Prisma
 backend/prisma/migrations/dev.db
+
+# Ferramentaria do Claude Code / superpowers (não faz parte do projeto)
+.claude/
+.agents/
+skills-lock.json
+docs/superpowers/
+
