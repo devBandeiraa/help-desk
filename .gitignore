@@ -58,4 +58,5 @@ backend/prisma/migrations/dev.db
 .agents/
 skills-lock.json
 docs/superpowers/
+prompt-helpdesk-claude-code.md
 
