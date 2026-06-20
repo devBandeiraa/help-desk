@@ -3,6 +3,7 @@
 > Sistema de gestão de chamados (help desk) full-stack — controle de acesso por
 > papéis, comentários internos, upload de anexos e dashboard analítico em tempo real.
 
+[![CI](https://github.com/devBandeiraa/help-desk/actions/workflows/ci.yml/badge.svg)](https://github.com/devBandeiraa/help-desk/actions/workflows/ci.yml)
 ![Node.js](https://img.shields.io/badge/Node.js-20+-339933?logo=node.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
@@ -135,7 +136,7 @@ Todas as rotas (exceto `register`/`login`) exigem `Authorization: Bearer <token>
 - [x] **Chamados** — CRUD, filtros, paginação, activity log
 - [x] **Colaboração** — comentários (público/interno) e anexos
 - [x] **Dashboard** — métricas e gráficos
-- [ ] **Qualidade** — testes (Jest/Supertest), Swagger/OpenAPI e CI (GitHub Actions)
+- [x] **Qualidade** — testes (Jest/Supertest), Swagger/OpenAPI (`/api-docs`) e CI (GitHub Actions)
 - [ ] **Deploy** — publicação (Railway/Vercel/Neon)
 
 ---
