@@ -28,7 +28,7 @@ export function AppLayout({ children, title }: { children: ReactNode; title: str
   return (
     <div className="flex min-h-screen bg-surface-secondary">
       {/* Sidebar */}
-      <aside className="hidden w-60 flex-col bg-slate-900 text-slate-300 md:flex">
+      <aside className="sticky top-0 hidden h-screen w-60 flex-col bg-slate-900 text-slate-300 md:flex">
         <div className="flex items-center gap-2 px-6 py-5 text-lg font-bold text-white">
           <Headset className="h-6 w-6 text-brand-400" /> HelpDesk Pro
         </div>
