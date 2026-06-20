@@ -7,6 +7,7 @@ import { UPLOAD_ROOT } from './middlewares/upload.middleware'
 import attachmentsRoutes from './modules/attachments/attachments.routes'
 import authRoutes from './modules/auth/auth.routes'
 import commentsRoutes from './modules/comments/comments.routes'
+import dashboardRoutes from './modules/dashboard/dashboard.routes'
 import ticketsRoutes from './modules/tickets/tickets.routes'
 import usersRoutes from './modules/users/users.routes'
 
@@ -29,6 +30,7 @@ app.get('/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date()
 // Rotas (todas sob /api/tickets caem em cascata nos routers abaixo)
 app.use('/api/auth', authRoutes)
 app.use('/api/users', usersRoutes)
+app.use('/api/dashboard', dashboardRoutes)
 app.use('/api/tickets', ticketsRoutes)
 app.use('/api/tickets', commentsRoutes)
 app.use('/api/tickets', attachmentsRoutes)
