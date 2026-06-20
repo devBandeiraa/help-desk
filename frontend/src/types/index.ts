@@ -52,6 +52,15 @@ export interface TicketActivity {
   user: UserRef
 }
 
+export interface Attachment {
+  id: string
+  filename: string
+  originalName: string
+  mimeType: string
+  size: number
+  createdAt: string
+}
+
 export interface Ticket {
   id: string
   title: string
@@ -66,6 +75,7 @@ export interface Ticket {
   creator: UserRef
   assignee?: UserRef | null
   comments?: TicketComment[]
+  attachments?: Attachment[]
   activities?: TicketActivity[]
 }
 
