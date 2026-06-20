@@ -9,11 +9,11 @@ export const STATUS_LABEL: Record<TicketStatus, string> = {
 }
 
 export const STATUS_CLASS: Record<TicketStatus, string> = {
-  OPEN: 'bg-blue-100 text-blue-700',
-  IN_PROGRESS: 'bg-amber-100 text-amber-700',
-  WAITING_CLIENT: 'bg-purple-100 text-purple-700',
-  RESOLVED: 'bg-green-100 text-green-700',
-  CLOSED: 'bg-slate-100 text-slate-600',
+  OPEN: 'bg-blue-500/15 text-blue-300 ring-1 ring-inset ring-blue-400/30',
+  IN_PROGRESS: 'bg-amber-500/15 text-amber-300 ring-1 ring-inset ring-amber-400/30',
+  WAITING_CLIENT: 'bg-purple-500/15 text-purple-300 ring-1 ring-inset ring-purple-400/30',
+  RESOLVED: 'bg-emerald-500/15 text-emerald-300 ring-1 ring-inset ring-emerald-400/30',
+  CLOSED: 'bg-white/[0.06] text-mist-200 ring-1 ring-inset ring-white/15',
 }
 
 export const PRIORITY_LABEL: Record<Priority, string> = {
@@ -24,10 +24,10 @@ export const PRIORITY_LABEL: Record<Priority, string> = {
 }
 
 export const PRIORITY_CLASS: Record<Priority, string> = {
-  LOW: 'bg-slate-100 text-slate-600',
-  MEDIUM: 'bg-blue-100 text-blue-700',
-  HIGH: 'bg-orange-100 text-orange-700',
-  CRITICAL: 'bg-red-100 text-red-700',
+  LOW: 'bg-white/[0.06] text-mist-200 ring-1 ring-inset ring-white/15',
+  MEDIUM: 'bg-blue-500/15 text-blue-300 ring-1 ring-inset ring-blue-400/30',
+  HIGH: 'bg-orange-500/15 text-orange-300 ring-1 ring-inset ring-orange-400/30',
+  CRITICAL: 'bg-red-500/15 text-red-300 ring-1 ring-inset ring-red-400/30',
 }
 
 export const CATEGORY_LABEL: Record<Category, string> = {

@@ -37,27 +37,27 @@ export function NewTicketPage() {
     <AppLayout title="Novo Chamado">
       <form
         onSubmit={handleSubmit}
-        className="mx-auto max-w-2xl space-y-4 rounded-xl border border-slate-200 bg-white p-6"
+        className="panel mx-auto max-w-2xl space-y-4 p-6"
       >
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700">Título</label>
+          <label className="mb-1 block text-sm font-medium text-mist-200">Título</label>
           <input
             required
             minLength={5}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Resumo do problema (mín. 5 caracteres)"
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
+            className="input-dark"
           />
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700">Categoria</label>
+            <label className="mb-1 block text-sm font-medium text-mist-200">Categoria</label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
+              className="input-dark"
             >
               {CATEGORY_OPTIONS.map((c) => (
                 <option key={c} value={c}>
@@ -67,11 +67,11 @@ export function NewTicketPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-700">Prioridade</label>
+            <label className="mb-1 block text-sm font-medium text-mist-200">Prioridade</label>
             <select
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
+              className="input-dark"
             >
               {PRIORITY_OPTIONS.map((p) => (
                 <option key={p} value={p}>
@@ -83,7 +83,7 @@ export function NewTicketPage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium text-slate-700">Descrição</label>
+          <label className="mb-1 block text-sm font-medium text-mist-200">Descrição</label>
           <textarea
             required
             minLength={10}
@@ -91,24 +91,20 @@ export function NewTicketPage() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Descreva o problema com detalhes (mín. 10 caracteres)"
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
+            className="input-dark"
           />
-          <p className="mt-1 text-right text-xs text-slate-400">{description.length} caracteres</p>
+          <p className="mt-1 text-right text-xs text-mist-400">{description.length} caracteres</p>
         </div>
 
         <div className="flex justify-end gap-3">
           <button
             type="button"
             onClick={() => navigate('/tickets')}
-            className="rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-600 hover:bg-slate-50"
+            className="btn-ghost px-4 py-2 text-sm"
           >
             Cancelar
           </button>
-          <button
-            type="submit"
-            disabled={loading}
-            className="flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600 disabled:opacity-60"
-          >
+          <button type="submit" disabled={loading} className="btn-primary px-4 py-2 text-sm">
             {loading && <Loader2 className="h-4 w-4 animate-spin" />}
             Abrir Chamado
           </button>

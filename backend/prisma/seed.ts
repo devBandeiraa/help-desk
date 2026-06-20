@@ -30,9 +30,9 @@ async function main() {
   await prisma.user.deleteMany()
 
   console.log('👤 Criando usuários...')
-  const adminPass = await bcrypt.hash('admin123', 12)
-  const tecPass = await bcrypt.hash('tecnico123', 12)
-  const cliPass = await bcrypt.hash('cliente123', 12)
+  const adminPass = await bcrypt.hash('Helpdesk@Admin2026', 12)
+  const tecPass = await bcrypt.hash('Helpdesk@Tech2026', 12)
+  const cliPass = await bcrypt.hash('Helpdesk@Cliente2026', 12)
 
   const admin = await prisma.user.create({
     data: { name: 'Admin Geral', email: 'admin@helpdesk.com', password: adminPass, role: Role.ADMIN },
@@ -124,9 +124,9 @@ async function main() {
   }
   console.log('✅ Seed concluído:', counts)
   console.log('\nCredenciais demo:')
-  console.log('  Admin:   admin@helpdesk.com / admin123')
-  console.log('  Técnico: tecnico1@helpdesk.com / tecnico123')
-  console.log('  Cliente: cliente1@helpdesk.com / cliente123')
+  console.log('  Admin:   admin@helpdesk.com / Helpdesk@Admin2026')
+  console.log('  Técnico: tecnico1@helpdesk.com / Helpdesk@Tech2026')
+  console.log('  Cliente: cliente1@helpdesk.com / Helpdesk@Cliente2026')
 }
 
 main()

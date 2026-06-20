@@ -4,8 +4,117 @@
 
 :root {
   font-family: 'Inter', system-ui, sans-serif;
+  /* Render native form controls / scrollbars in dark */
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
+  background-color: #0d0d13;
+  color: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Design tokens — shared dark "glass" components used across the app     */
+/* ---------------------------------------------------------------------- */
+@layer components {
+  .app-shell {
+    @apply min-h-screen bg-ink-950 font-sans text-mist-50 antialiased;
+  }
+
+  /* Glass surface / card */
+  .panel {
+    @apply rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm;
+  }
+
+  /* Text inputs, textareas and selects */
+  .input-dark {
+    @apply w-full rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-[15px] text-white outline-none transition-all duration-300 placeholder:text-mist-400 focus:border-brand-400/70 focus:ring-4 focus:ring-brand-500/20;
+  }
+
+  /* Primary gradient button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-700 px-4 py-2 font-medium text-white shadow-lg shadow-brand-600/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-brand-600/40 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100;
+  }
+
+  /* Secondary / ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.03] px-4 py-2 text-mist-200 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] hover:text-white;
+  }
+}
+
+/* Native <option> dropdowns render dark */
+select.input-dark option {
+  background-color: #0b0b0f;
+  color: #ffffff;
+}
+
+@layer utilities {
+  /* Staggered entrance delays */
+  .delay-1 { animation-delay: 0.08s; }
+  .delay-2 { animation-delay: 0.16s; }
+  .delay-3 { animation-delay: 0.24s; }
+  .delay-4 { animation-delay: 0.32s; }
+  .delay-5 { animation-delay: 0.4s; }
+  .delay-6 { animation-delay: 0.48s; }
+
+  /* Technological grid texture */
+  .bg-tech-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  /* Radial mask fade for the grid edges */
+  .mask-radial-fade {
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 35%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 35%, transparent 100%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Animated ripple on the login button */
+.ripple {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.45);
+  transform: scale(0);
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+}
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Login-screen autofill: keep dark glass look instead of white box */
+.glass-input:-webkit-autofill,
+.glass-input:-webkit-autofill:hover,
+.glass-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.02) inset;
+  caret-color: #ffffff;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
