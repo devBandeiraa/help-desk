@@ -1,5 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { NextFunction, Request, Response } from 'express'
+import { MulterError } from 'multer'
 import { JsonWebTokenError } from 'jsonwebtoken'
 import { ZodError } from 'zod'
 import { isDev } from '../config/env'
@@ -32,6 +33,16 @@ export function errorMiddleware(
       success: false,
       error: { message: 'Erro de banco de dados', code: err.code },
     })
+  }
+
+  if (err instanceof MulterError) {
+    const message =
+      err.code === 'LIMIT_FILE_SIZE'
+        ? 'Arquivo excede o limite de 10MB'
+        : err.code === 'LIMIT_FILE_COUNT'
+          ? 'Máximo de 5 arquivos por envio'
+          : 'Falha no upload do arquivo'
+    return res.status(400).json({ success: false, error: { message, code: err.code } })
   }
 
   if (err instanceof JsonWebTokenError) {

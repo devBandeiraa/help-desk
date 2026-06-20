@@ -76,9 +76,20 @@ export const ticketsService = {
   },
 
   async findById(id: string, user: AuthUser) {
-    const ticket = await prisma.ticket.findUnique({ where: { id }, include: detailInclude })
+    const isClient = user.role === Role.CLIENT
+    const ticket = await prisma.ticket.findUnique({
+      where: { id },
+      include: {
+        ...detailInclude,
+        comments: {
+          ...detailInclude.comments,
+          // CLIENT não vê comentários internos.
+          ...(isClient && { where: { isInternal: false } }),
+        },
+      },
+    })
     if (!ticket) throw ApiError.notFound('Chamado não encontrado')
-    if (user.role === Role.CLIENT && ticket.creatorId !== user.id) {
+    if (isClient && ticket.creatorId !== user.id) {
       throw ApiError.forbidden('Você não tem acesso a este chamado')
     }
     return ticket
