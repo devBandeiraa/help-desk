@@ -3,7 +3,11 @@ import multer from 'multer'
 import path from 'path'
 import { ApiError } from '../utils/ApiError'
 
-const UPLOAD_ROOT = path.resolve(process.env.UPLOAD_DIR ?? path.join(__dirname, '..', '..', 'uploads'))
+// Em serverless (Vercel) o único diretório gravável é /tmp (efêmero).
+const defaultUploadDir = process.env.VERCEL
+  ? '/tmp/uploads'
+  : path.join(__dirname, '..', '..', 'uploads')
+const UPLOAD_ROOT = path.resolve(process.env.UPLOAD_DIR ?? defaultUploadDir)
 
 const ALLOWED = new Set([
   'image/jpeg',
