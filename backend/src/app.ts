@@ -1,7 +1,7 @@
 import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
-import { env } from './config/env'
+import { env, isDev } from './config/env'
 import { errorMiddleware } from './middlewares/error.middleware'
 import { UPLOAD_ROOT } from './middlewares/upload.middleware'
 import attachmentsRoutes from './modules/attachments/attachments.routes'
@@ -15,7 +15,9 @@ const app = express()
 
 // Segurança
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }))
-app.use(cors({ origin: env.frontendUrl, credentials: true }))
+// Em desenvolvimento reflete qualquer origem (permite acesso por localhost e por IP de rede);
+// em produção restringe ao FRONTEND_URL configurado.
+app.use(cors({ origin: isDev ? true : env.frontendUrl, credentials: true }))
 
 // Parsing
 app.use(express.json({ limit: '10mb' }))
