@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto'
 import jwt, { SignOptions } from 'jsonwebtoken'
 import { Role } from '@prisma/client'
 import { env } from '../config/env'
@@ -15,7 +16,9 @@ export function signAccessToken(payload: AccessPayload): string {
 }
 
 export function signRefreshToken(userId: string): string {
-  return jwt.sign({ sub: userId }, env.jwt.refreshSecret, {
+  // jti aleatório garante que cada refresh token seja único (evita colisão quando
+  // dois são emitidos para o mesmo usuário no mesmo segundo).
+  return jwt.sign({ sub: userId, jti: randomUUID() }, env.jwt.refreshSecret, {
     expiresIn: env.jwt.refreshExpiresIn,
   } as SignOptions)
 }
