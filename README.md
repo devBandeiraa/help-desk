@@ -28,7 +28,7 @@
 
 **Backend:** Node.js · Express · TypeScript · Prisma ORM · PostgreSQL · JWT · Zod · Multer · bcrypt
 **Frontend:** React · TypeScript · Vite · Tailwind CSS · TanStack Query · Zustand · React Router · Axios · Recharts
-**Infra:** Docker Compose (opcional)
+
 
 ## 🏗️ Arquitetura
 
