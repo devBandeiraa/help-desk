@@ -2,6 +2,7 @@ import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
 import { env, isDev } from './config/env'
+import { setupSwagger } from './config/swagger'
 import { errorMiddleware } from './middlewares/error.middleware'
 import { UPLOAD_ROOT } from './middlewares/upload.middleware'
 import attachmentsRoutes from './modules/attachments/attachments.routes'
@@ -25,6 +26,9 @@ app.use(express.urlencoded({ extended: true }))
 
 // Arquivos enviados (estático)
 app.use('/uploads', express.static(UPLOAD_ROOT))
+
+// Documentação (Swagger UI)
+setupSwagger(app)
 
 // Health check
 app.get('/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date() }))
