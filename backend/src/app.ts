@@ -16,9 +16,26 @@ const app = express()
 
 // Segurança
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }))
-// Em desenvolvimento reflete qualquer origem (permite acesso por localhost e por IP de rede);
-// em produção restringe ao FRONTEND_URL configurado.
-app.use(cors({ origin: isDev ? true : env.frontendUrl, credentials: true }))
+
+// CORS: em dev libera tudo; em produção aceita os domínios configurados em
+// FRONTEND_URL (lista separada por vírgula) e qualquer deploy *.vercel.app.
+const allowedOrigins = env.frontendUrl
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean)
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || isDev) return callback(null, true)
+      if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+        return callback(null, true)
+      }
+      return callback(new Error(`Origem não permitida pelo CORS: ${origin}`))
+    },
+    credentials: true,
+  }),
+)
 
 // Parsing
 app.use(express.json({ limit: '10mb' }))
